@@ -21,10 +21,14 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck, hidingCheck, lightCheck, interactCheck;
     public LayerMask groundLayer, hidingLayer, lightLayer, interactLayer;
     public string interactTag;
+
+    
+   
     
 
     public AudioClip[] footStepClips;
     public AudioClip jumpClip;
+    
 
    
     void Awake()
@@ -132,6 +136,10 @@ public class PlayerController : MonoBehaviour
                 this.gameObject.tag = "Player";
             }
         }
+        else
+        {
+            this.gameObject.tag = "Player";
+        }
         
     }
 
@@ -164,12 +172,11 @@ public class PlayerController : MonoBehaviour
         {
             if (hitInteract.gameObject.tag == interactTag && Input.GetKeyDown(KeyCode.F))
             {
-                GameObject.FindGameObjectWithTag(interactTag).tag = "WasInteracted";
-               
+               GameObject.FindGameObjectWithTag(interactTag).tag = "WasInteracted";
+                
             }
                        
-        }
-        
+        }       
         
     }
 }
