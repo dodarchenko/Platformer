@@ -64,6 +64,7 @@ public class EnemySkeleton : MonoBehaviour
             else
             {
                 patrol = true;
+                //test test;
             }
             
         }
