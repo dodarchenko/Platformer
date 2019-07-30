@@ -52,37 +52,8 @@ public class EnemySkeleton : MonoBehaviour
 
     void Update()
     {
-                 
-        if (transform.localScale.x < 0)
-        {
-            hitInfo = Physics2D.Raycast(transform.position, -transform.right, rayDistance, rayCastLayer);
-
-           if ((Vector2.Distance(transform.position, playerPos.position) <= .2f) || hitInfo.collider.CompareTag("PlayerOnLight"))
-            {
-                patrol = false;
-            }
-            else
-            {
-                patrol = true;
-                //test test;
-            }
-            
-        }
-        else
-        {
-            hitInfo = Physics2D.Raycast(transform.position, transform.right, rayDistance, rayCastLayer);
-            if ((Vector2.Distance(transform.position, playerPos.position) <= .2f) || hitInfo.collider.CompareTag("PlayerOnLight"))
-            {
-                patrol = false;
-                
-            }
-            else
-            {
-                patrol = true;
-            }
-        }
-         
-            
+           
+                            
        
     }
 
@@ -97,7 +68,35 @@ public class EnemySkeleton : MonoBehaviour
             return;
         }
 
-       
+        if (transform.localScale.x < 0)
+        {
+            hitInfo = Physics2D.Raycast(transform.position, -transform.right, rayDistance, rayCastLayer);
+
+            if ((Vector2.Distance(transform.position, playerPos.position) <= .2f) || hitInfo.collider.CompareTag("PlayerOnLight"))
+            {
+                patrol = false;
+            }
+            else
+            {
+                patrol = true;
+            }
+
+        }
+        else
+        {
+            hitInfo = Physics2D.Raycast(transform.position, transform.right, rayDistance, rayCastLayer);
+            if ((Vector2.Distance(transform.position, playerPos.position) <= .2f) || hitInfo.collider.CompareTag("PlayerOnLight"))
+            {
+                patrol = false;
+
+            }
+            else
+            {
+                patrol = true;
+            }
+        }
+
+
         if (myBody.velocity.x > 0)
         {
             transform.localScale = new Vector2(1.3f, transform.localScale.y);
