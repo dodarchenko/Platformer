@@ -43,13 +43,14 @@ public class EnemySkeleton : MonoBehaviour
         playerPos = GameObject.Find("Assassin").transform;
         myBody = GetComponent<Rigidbody2D>();
         wasSpawned = false;
-        spawn = 1;
+        
     }
 
     void Start()
     {
         maxX = transform.position.x + (distance / 2);
         minX = maxX - distance;
+        spawn = 0;
         
 
         /* if (Random.value > 0.5) direction = 1;
@@ -85,7 +86,21 @@ public class EnemySkeleton : MonoBehaviour
             {
                 patrol = true;
             }
-        }       
+        }
+
+        if (GameObject.FindGameObjectWithTag("WasInteracted") != null)
+        {
+            if (wasSpawned == false)
+            {
+                wasSpawned = true;
+                Spawn();
+            }
+            else
+            {
+                patrol = true;
+            }
+        }
+        
     }
 
 
@@ -100,7 +115,9 @@ public class EnemySkeleton : MonoBehaviour
             return;
         }
 
-       
+     
+
+
         if (myBody.velocity.x > 0)
         {
             transform.localScale = new Vector2(1.3f, transform.localScale.y);
@@ -153,6 +170,7 @@ public class EnemySkeleton : MonoBehaviour
                 anim.SetBool("Attack", true);
             }
         }
+        
     }
 
     public void Attack()
@@ -175,6 +193,12 @@ public class EnemySkeleton : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
+    }
+
+    public void Spawn()
+    {
+        Instantiate(gameObject, new Vector3(spawnX, spawnY, spawnZ), transform.rotation);
+        Destroy(gameObject);
     }
 
 }
